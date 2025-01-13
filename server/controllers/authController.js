@@ -20,12 +20,9 @@ const logout = async (req, res) => {
 
 // controller for auth user through refreshToken
 const authMe = async (req, res) => {
-    console.log("starting evaluation process");
     const refreshToken = req.cookies.refreshToken;
-    console.log(refreshToken);
 
     if(!refreshToken){
-        console.log("server determined refresh token is invalid");
         return res.status(401).json({message: "No valid refresh token found"});
     }
 
@@ -59,9 +56,6 @@ const authMe = async (req, res) => {
             maxAge: timeRemaining * 1000
         })
 
-        console.log("cookie is valid.... returning")
-
-        //const user = result.rows[0]
         res.status(200).json({accessToken: accessToken, user: {username: user.rows[0].username, name: `${user.rows[0].first_name} ${user.rows[0].last_name}`}})
     } catch (error){
         console.error("User validation failed");
@@ -73,7 +67,6 @@ const authMe = async (req, res) => {
 // controller for refreshing tokens
 const refreshToken = async (req, res) => {
     const refreshToken = req.cookies.refreshToken;
-    console.log(refreshToken);
 
     if (!refreshToken) {
         return res.status(401).json({ message: "Refresh token not found" });
@@ -88,7 +81,6 @@ const refreshToken = async (req, res) => {
         const newAccessToken = generateAccessToken(userObject);
 
         // return access code
-        console.log('token refresh successful');
         res.json({ accessToken: newAccessToken });
     } catch (error) {
         console.error("Refresh token not verified: ", error);
@@ -105,7 +97,6 @@ const register = async (req, res) => {
         // hash supplied password
         const salt = 10;
         const hashedPassword = await bcrypt.hash(password, salt);
-        console.log(hashedPassword);
 
         // insert user into Database
         const query = 'INSERT INTO users (first_name, last_name, username, email, password_hash) VALUES ($1, $2, $3, $4, $5) RETURNING user_id, first_name, last_name, username';

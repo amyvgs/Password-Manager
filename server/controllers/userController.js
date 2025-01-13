@@ -84,10 +84,8 @@ const obtainUserPasswords = async (req, res) => {
     try{
 
         const query  = "SELECT p.password_id, c.category_name, c.category_color, p.password_name, p.password, p.last_updated, p.iv, p.auth_tag FROM passwords p LEFT JOIN user_categories c ON p.category = c.category_id WHERE p.user_id = $1"
-        //"SELECT password_id, category, password_name, password, last_updated, iv, auth_tag FROM passwords WHERE user_id = $1"
 
         const result = await pool.query(query, [userID]);
-        console.log(result.rows);
         const allRows = result.rows;
 
         const userPasswords = allRows.map((element) => {
@@ -116,7 +114,6 @@ const obtainPasswordsWithCategories = async(req,res) => {
 
     try{
         const query = "SELECT p.password_id, c.category_name, c.category_color, p.password_name, p.password, p.last_updated, p.iv, p.auth_tag FROM passwords p LEFT JOIN user_categories c ON p.category = c.category_id WHERE category = $1" 
-        //"SELECT * FROM passwords WHERE category = $1"
         const result = await pool.query(query, [category_id]);
         const allRows = result.rows;
 

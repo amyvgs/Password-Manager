@@ -5,10 +5,8 @@ require('dotenv').config();
 
 const deletePassword = async (req, res) => {
     const { password_id } = req.body;
-    console.log(password_id);
     try {
         const result = await pool.query("DELETE FROM passwords WHERE password_id = $1 RETURNING password_id", [password_id]);
-        console.log(`Successfully deleted password: ${result.rows[0].password_id}`);
         res.status(200).json({ message: "Succssful password deletion" });
     } catch (error) {
         console.error(error);
@@ -49,7 +47,6 @@ const updatePassword = async (req, res) => {
         const query = "UPDATE passwords SET password_name = $1, password = $2, category = $3, last_updated = $4, iv = $5, auth_tag = $6  WHERE password_id = $7 RETURNING password_id";
         const result = await client.query(query, [password_name, encryptedData, categoryID, currTime, iv, authTag, password_id]);
         
-        console.log(`Successfully updated password ${result.rows[0].password_id}`);
         res.status(200).json({ message: "Password updated successfully", category_id: categoryID, category_name:category });
         await client.query("COMMIT");
     } catch (error) {
@@ -68,7 +65,6 @@ const updateCategory = async (req, res) => {
     try {
         const query = "UPDATE user_categories SET category_name = $1, category_color = $2 WHERE category_id = $3 RETURNING category_id";
         const result = await pool.query(query, [category_name, category_color, category_id]);
-        console.log(`Successfully Updated Category ${result.rows[0].category_id}`);
         res.status(200).json({ message: "Category Updated Successfully" });
 
     } catch (error) {
@@ -90,7 +86,6 @@ const deleteCategory = async (req, res) => {
 
         // then attempt to set all passwords with id to null
         const passUpdated = await client.query("UPDATE passwords SET category = null WHERE category = $1", [category_id]);
-        console.log("Password Updated successfully")
         res.status(200).json({ message: "Category deleted successfully!" });
         await client.query("COMMIT");
     } catch (error) {

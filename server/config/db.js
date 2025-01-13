@@ -13,12 +13,6 @@ const pool = new Pool({
     }
 });
 
-// test database connection
-pool
-    .query("SELECT NOW()")
-    .then((res) => console.log('Database connection issued at : ', res.rows[0].now))
-    .catch((err) => console.error('Database could not connect: ', err.stack));
-
 
 // close database connection safely 
 process.on("SIGINT", async() => {
