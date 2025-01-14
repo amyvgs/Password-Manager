@@ -3,6 +3,8 @@ import api from "../api";
 import { useAuthContext } from "./AuthProvider";
 
 const usePasswords = (context, info) => {
+    const baseURL = import.meta.env.VITE_API_URL;
+
     // error handling from global auth context
     const {errorHandling} = useAuthContext();
 
@@ -27,7 +29,7 @@ const usePasswords = (context, info) => {
     const handleDeletePassword = async (passwordId, password) => {
         // attempt to delete on backend
         try {
-            const res = await api.post("http://localhost:3000/api/manage/deletePassword", { password_id: passwordId });
+            const res = await api.post(`/api/manage/deletePassword`, { password_id: passwordId });
             uiUpdateDelete(passwordId);
         } catch (error) {
             console.error(error);
@@ -41,7 +43,7 @@ const usePasswords = (context, info) => {
     // useEffect to update allPasswords with the context of the passwords givem
     useEffect(() => {
         const obtainPasswords = async () => {
-            const url = context === "all" ? "http://localhost:3000/api/user/obtainPasswords" : "http://localhost:3000/api/user/obtainPasswordsWithCat";
+            const url = context === "all" ? `/api/user/obtainPasswords` : `/api/user/obtainPasswordsWithCat`;
 
             try {
                 const res = await api.post(url, info, { withCredentials: true });

@@ -2,7 +2,7 @@ import axios from "axios";
 
 // create axios instance
 const api = axios.create({
-    baseURL: 'http://localhost:3000',
+    baseURL: import.meta.env.VITE_API_URL,
     withCredentials: true
 })
 
@@ -21,11 +21,12 @@ api.interceptors.response.use(
     (response) => response,
     async (error) => {
         if (error.response && error.response.status === 403) {
+            const baseURL = import.meta.env.VITE_API_URL;
             console.log('Access token has expired. Attempting refresh...');
 
             try {
                 // api call to refresh token
-                const refreshResponse = await axios.post('http://localhost:3000/api/auth/refreshToken', {}, { withCredentials: true });
+                const refreshResponse = await axios.post(`${baseURL}/api/auth/refreshToken`, {}, { withCredentials: true });
 
                 const { accessToken } = refreshResponse.data;
 

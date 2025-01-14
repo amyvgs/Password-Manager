@@ -28,11 +28,11 @@ export default function CreateAccount() {
     // function to handle sign up submit
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Provided information:", { email, userName, password, firstName, lastName });
+        const baseURL = import.meta.env.VITE_API_URL
 
         try {
             // add api endpoint connection logic here
-            const res = await axios.post("http://localhost:3000/api/auth/register", {
+            const res = await axios.post(`${baseURL}/api/auth/register`, {
                 email: email,
                 username: userName,
                 password: password,
@@ -40,15 +40,12 @@ export default function CreateAccount() {
                 lastname: lastName
             }, {withCredentials: true});
             
-            console.log(res.data.message);
             const accessToken = res.data.accessToken;
-            console.log(accessToken);
             sessionStorage.setItem("accessToken", accessToken);
 
             nav("/userdashboard");
         } catch (error) {
             setErrorMessage(error.response.data.message);
-            console.error("Error on account creation: ", error );
         }finally{
             // clear ui 
             setEmail("");

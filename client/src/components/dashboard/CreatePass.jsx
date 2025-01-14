@@ -49,7 +49,7 @@ export default function CreatePassword() {
         let res;
 
         try {
-            res = await api.post("http://localhost:3000/api/user/createPassword", { name: passwordName, password: password, chosenCategory: createNewCategory ? newCategoryName : chosenCategory, categoryColor: categoryColor });
+            res = await api.post("/api/user/createPassword", { name: passwordName, password: password, chosenCategory: createNewCategory ? newCategoryName : chosenCategory, categoryColor: categoryColor });
             if (createNewCategory) {
                 uiAddCategories({ category_name: createNewCategory ? newCategoryName : chosenCategory, category_id: res.data.category_id, category_color: categoryColor });
             }
@@ -57,7 +57,6 @@ export default function CreatePassword() {
             setMessage("Password Created Successfully!");
             setIsError(false);
         } catch (error) {
-            console.log(error);
             errorHandling(error.status || 500);
             setMessage(error.data.response.message);
             setIsError(true);

@@ -54,7 +54,8 @@ const authMe = async (req, res) => {
             secure: true,
             sameSite: 'Strict',
             maxAge: timeRemaining * 1000
-        })
+        });
+
 
         res.status(200).json({accessToken: accessToken, user: {username: user.rows[0].username, name: `${user.rows[0].first_name} ${user.rows[0].last_name}`}})
     } catch (error){

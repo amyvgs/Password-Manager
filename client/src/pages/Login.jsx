@@ -32,17 +32,16 @@ export default function Login() {
     // function to handle login submit
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Provided information:", { email, password });
+        const baseURL = import.meta.env.VITE_API_URL;
 
         try {
             // api connection
             setErrorMessage("");
 
-            const res = await axios.post("http://localhost:3000/api/auth/login", {
+            const res = await axios.post(`${baseURL}/api/auth/login`, {
                 email: email,
                 password: password
             }, { withCredentials: true });
-            console.log(res.data.message);
 
             // obtain needed data to store
             const userInfo = res.data.user
@@ -61,7 +60,6 @@ export default function Login() {
         } catch (error) {
             // display server message error to ui
             setErrorMessage(error.response.data.message);
-            console.error("Error on login: ", error);
 
         } finally {
             // clear ui inputs

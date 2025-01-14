@@ -7,6 +7,7 @@ const CategoryContext = createContext();
 
 // create provider component
 export const CategoryProvider = ({children}) => {
+    const baseURL = import.meta.env.VITE_API_URL;
 
     // useStates
     const [userCategories, setUserCategories] = useState(() => {
@@ -23,7 +24,7 @@ export const CategoryProvider = ({children}) => {
     // obtain user made cateogories
     const obtainUserCategories = async () => {
         try {
-            const res = await api.post("http://localhost:3000/api/user/obtainCategories");
+            const res = await api.post(`/api/user/obtainCategories`);
 
             // store user categories within session storage for future display
             const resCategories = res.data.userCategories;
@@ -63,8 +64,7 @@ export const CategoryProvider = ({children}) => {
             // optimistic update
             uiDeleteCategories(category_id);
 
-            const res = await api.post("http://localhost:3000/api/manage/deleteCategory", { category_id: category_id });
-            console.log(res.data.message);
+            const res = await api.post(`/api/manage/deleteCategory`, { category_id: category_id });
 
         } catch(error){
             console.error(error);

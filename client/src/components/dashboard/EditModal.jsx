@@ -35,7 +35,7 @@ const EditModal = ({ type, value, setOpenEdit, uiUpdateChange, uiUpdateDelete, u
     const handleUpdate = async () => {
         // conditionally decide url and body information
         const currId = type === "password" ? value.password_id : value.category_id;
-        const url = type === "password" ? "http://localhost:3000/api/manage/updatePassword" : "http://localhost:3000/api/manage/updateCategory";
+        const url = type === "password" ? "/api/manage/updatePassword" : "/api/manage/updateCategory";
         const body = type === "password" ?
             {
                 password_id: value.password_id, 
