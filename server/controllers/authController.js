@@ -53,6 +53,7 @@ const authMe = async (req, res) => {
             httpOnly: true,
             secure: true,
             sameSite: 'Strict',
+            path:"/",
             maxAge: timeRemaining * 1000
         });
 
@@ -115,6 +116,7 @@ const register = async (req, res) => {
             httpOnly: true,
             secure: true,
             sameSite: 'Strict',
+            path: "/",
             maxAge: 1 * 24 * 60 * 60 * 1000 // 1 day duration
         });
 
@@ -165,6 +167,7 @@ const login = async (req, res) => {
             httpOnly: true,
             secure: true,
             sameSite: 'Strict',
+            path:"/",
             maxAge: 1 * 24 * 60 * 60 * 1000 // 1 day duration
         });
 
