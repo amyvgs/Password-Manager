@@ -10,7 +10,7 @@ const app = express();
 const cors = require('cors');
 
 const corsOptions = {
-    origin: ["http://localhost:5173", "https://passwordsafe.onrender.com"],
+    origin: ["http://localhost:5173", "https://password-manager-psi-one.vercel.app/"],
     credentials:true
 }
 
