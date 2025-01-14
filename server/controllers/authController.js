@@ -8,7 +8,7 @@ const logout = async (req, res) => {
         res.clearCookie("refreshToken", {
             httpOnly: true,
             secure: true,
-            sameSite: 'Strict',
+            sameSite: 'None',
             path:"/",
             domain: ".onrender.com"
         });
@@ -53,7 +53,7 @@ const authMe = async (req, res) => {
         res.cookie("refreshToken", newRefreshToken, {
             httpOnly: true,
             secure: true,
-            sameSite: 'Strict',
+            sameSite: 'None',
             domain: ".onrender.com",
             path:"/",
             maxAge: timeRemaining * 1000
@@ -117,7 +117,7 @@ const register = async (req, res) => {
         res.cookie('refreshToken', refreshToken, {
             httpOnly: true,
             secure: true,
-            sameSite: 'Strict',
+            sameSite: 'None',
             domain: ".onrender.com",
             path:"/",
             maxAge: 1 * 24 * 60 * 60 * 1000 // 1 day duration
@@ -169,7 +169,7 @@ const login = async (req, res) => {
         res.cookie('refreshToken', refreshToken, {
             httpOnly: true,
             secure: true,
-            sameSite: 'Strict',
+            sameSite: 'None',
             domain: ".onrender.com",
             path: "/",
             maxAge: 1 * 24 * 60 * 60 * 1000 // 1 day duration
