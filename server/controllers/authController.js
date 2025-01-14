@@ -9,7 +9,8 @@ const logout = async (req, res) => {
             httpOnly: true,
             secure: true,
             sameSite: 'Strict',
-            path:"/"
+            path:"/",
+            domain: ".onrender.com"
         });
         res.status(200).json({message: "Cookie deleted successfully"})
     } catch(error){
@@ -53,6 +54,7 @@ const authMe = async (req, res) => {
             httpOnly: true,
             secure: true,
             sameSite: 'Strict',
+            domain: ".onrender.com",
             path:"/",
             maxAge: timeRemaining * 1000
         });
@@ -116,7 +118,8 @@ const register = async (req, res) => {
             httpOnly: true,
             secure: true,
             sameSite: 'Strict',
-            path: "/",
+            domain: ".onrender.com",
+            path:"/",
             maxAge: 1 * 24 * 60 * 60 * 1000 // 1 day duration
         });
 
@@ -167,7 +170,8 @@ const login = async (req, res) => {
             httpOnly: true,
             secure: true,
             sameSite: 'Strict',
-            path:"/",
+            domain: ".onrender.com",
+            path: "/",
             maxAge: 1 * 24 * 60 * 60 * 1000 // 1 day duration
         });
 
