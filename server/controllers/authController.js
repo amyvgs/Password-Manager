@@ -8,7 +8,7 @@ const logout = async (req, res) => {
         res.clearCookie("refreshToken", {
             httpOnly: true,
             secure: true,
-            sameSite: 'None',
+            sameSite: 'Strict',
             path:"/"
         });
         res.status(200).json({message: "Cookie deleted successfully"})
@@ -52,7 +52,7 @@ const authMe = async (req, res) => {
         res.cookie("refreshToken", newRefreshToken, {
             httpOnly: true,
             secure: true,
-            sameSite: 'None',
+            sameSite: 'Strict',
             maxAge: timeRemaining * 1000
         });
 
@@ -114,7 +114,7 @@ const register = async (req, res) => {
         res.cookie('refreshToken', refreshToken, {
             httpOnly: true,
             secure: true,
-            sameSite: 'None',
+            sameSite: 'Strict',
             maxAge: 1 * 24 * 60 * 60 * 1000 // 1 day duration
         });
 
@@ -164,7 +164,7 @@ const login = async (req, res) => {
         res.cookie('refreshToken', refreshToken, {
             httpOnly: true,
             secure: true,
-            sameSite: 'None',
+            sameSite: 'Strict',
             maxAge: 1 * 24 * 60 * 60 * 1000 // 1 day duration
         });
 
