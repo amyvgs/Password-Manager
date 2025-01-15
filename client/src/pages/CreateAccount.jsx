@@ -58,7 +58,7 @@ export default function CreateAccount() {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center w-screen h-screen bg-no-repeat bg-cover bg-[url('src/assets/blueback.jpeg')] overflow-y-hidden">
+        <div className="flex flex-col items-center justify-center w-screen h-screen bg-no-repeat bg-cover bg-[url('./assets/blueback.jpeg')] overflow-y-hidden">
             <div className="flex flex-col items-center justify-start max-sm:w-3/4 max-md:w-3/4 max-sm:h-4/5 max-md:h-4/5 w-2/6 h-3/4 mt-20 bg-white dark:bg-slate-800 dark:text-white rounded-lg p-7 shadow-xl shadow-black overflow-y-auto">
                 <h1 className="font-Roboto text-3xl font-semibold">Sign-Up</h1>
                 <h1 className="mb-2 font-Roboto">Create Your Account Down Below!</h1>

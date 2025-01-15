@@ -73,7 +73,7 @@ export default function Login() {
     return (
         <>
             
-                <div className="flex flex-col items-center justify-center w-screen h-screen bg-no-repeat bg-cover bg-[url('src/assets/blueback.jpeg')] overflow-y-hidden">
+                <div className="flex flex-col items-center justify-center w-screen h-screen bg-no-repeat bg-cover bg-[url('./assets/blueback.jpeg')] overflow-y-hidden">
                     <div className="flex flex-col items-center justify-center max-sm:w-3/4 max-md:w-3/4 w-2/6 h-2/3 mt-20 bg-white dark:bg-slate-800 dark:text-white rounded-lg p-5 shadow-xl shadow-black">
                         <h1 className="font-Roboto text-3xl font-semibold">Login</h1>
                         <h1 className="mb-2 font-Roboto">Welcome Back!</h1>
