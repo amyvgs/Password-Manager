@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import './App.css'
 import Home from './pages/Home';
 import Header from './components/Header';
@@ -13,12 +13,16 @@ import { useAuthContext } from './hooks/AuthProvider';
 import SessionExpired from './pages/SessionExpired';
 
 function App() {
+  const location = useLocation();
   const { isLoggedIn } = useAuthContext();
+  const NON_PROTECTED_ROUTES = new Set(["/", "/createAccount"])
+
+  const onAuthenticatedPage = NON_PROTECTED_ROUTES.has(location.pathname);
 
   return (
     <>
       {/* conditionally render userheader */}
-      {isLoggedIn ? <UserHeader/> : <Header/>}
+      {isLoggedIn && !onAuthenticatedPage ? <UserHeader/> : <Header/>}
 
 
       {/* All website routes */}

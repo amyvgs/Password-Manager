@@ -23,6 +23,7 @@ export default function Login() {
     }
 
     useEffect(() => {
+        setIsLoggedIn(false);
         // if refresh cookie is valid sign user in
         validateSession()
 
