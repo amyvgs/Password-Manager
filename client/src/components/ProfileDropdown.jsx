@@ -33,14 +33,14 @@ export default function ProfileDropDown(){
     return(
 
         <div className="relative z-20"> 
-            <div onClick={() => setIsOpen(!isOpen)} className="flex items-center justify-center hover:cursor-pointer hover:bg-gray-200 h-10 w-10 z-20">
+            <div onClick={() => setIsOpen(!isOpen)} className="flex items-center justify-center hover:cursor-pointer hover:bg-gray-200 dark:hover:bg-slate-800 dark:text-white h-10 w-10 z-20">
                 <AccountCircleIcon/>
             </div>
 
         
 
             {isOpen && 
-                createPortal(<div onClick={(e) => e.stopPropagation()} ref={boxRef} className="absolute top-24 right-4 bg-gray-300 dark:bg-slate-600 dark:text-white flex flex-col justify-center items-center p-5  z-50 shadow-xl">
+                createPortal(<div onClick={(e) => e.stopPropagation()} ref={boxRef} className="absolute top-24 right-4 bg-gray-300 dark:bg-slate-800 dark:text-white flex flex-col justify-center items-center p-5  z-50 shadow-xl">
                     <div>
                         <h1>{user.username}</h1>
                     </div>

@@ -47,7 +47,6 @@ export const AuthProvider = ({ children }) => {
             nav("/userdashboard", { replace: true });  
             
         } catch (error) {
-            console.error(error);
             console.log("Refresh Token is invalid");
         } 
     };

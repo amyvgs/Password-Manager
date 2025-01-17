@@ -22,7 +22,6 @@ api.interceptors.response.use(
     async (error) => {
         if (error.response && error.response.status === 403) {
             const baseURL = import.meta.env.VITE_API_URL;
-            console.log('Access token has expired. Attempting refresh...');
 
             try {
                 // api call to refresh token
